@@ -41,7 +41,7 @@ class User(UserMixin,db.Model):
 class BLOG(db.Model):
     __tablename__ = 'm_blog'
 
-    m_id = db.Column(db.Integer,primary_key = True)
+    id = db.Column(db.Integer,primary_key = True)
     m_blog_title = db.Column(db.String())
     m_blog_content = db.Column(db.String())
     m_user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
