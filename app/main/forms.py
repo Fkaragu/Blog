@@ -13,16 +13,5 @@ class CommentForm(FlaskForm):
     submit = SubmitField('Post Comment')
 
 class PitchFormI(FlaskForm):
-    pitch = TextAreaField('Pitch Comment', validators=[Required()])
-    my_category = SelectField('Category', choices=[('Interview','Interview')])
-    submit = SubmitField('Submit')
-
-class PitchFormL(FlaskForm):
-    pitch = TextAreaField('Pitch Comment', validators=[Required()])
-    my_category = SelectField('Category', choices=[('PickupLine','PickupLine')])
-    submit = SubmitField('Submit')
-
-class PitchFormP(FlaskForm):
-    pitch = TextAreaField('Pitch Comment', validators=[Required()])
-    my_category = SelectField('Category', choices=[('Promotion','Promotion')])
+    pitch = TextAreaField('Write your blog:', validators=[Required()], render_kw={'class': 'form-control', 'rows': 15})
     submit = SubmitField('Submit')

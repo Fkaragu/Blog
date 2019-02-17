@@ -86,7 +86,6 @@ class Pitch(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     pitch_content = db.Column(db.String())
-    pitch_category = db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_pitch(self):
