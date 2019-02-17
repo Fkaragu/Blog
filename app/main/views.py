@@ -29,8 +29,9 @@ def theblog():
         #return redirect(url_for('index.html'))
 
     title = 'Interview Pitch'
+    all_pitches = Pitch.get_all_pitches()
 
-    return render_template("theblog.html", pitch_form = pitch_form)
+    return render_template("theblog.html", pitch_form = pitch_form, pitches = all_pitches)
 
 @main.route('/pitch/<int:id>',methods = ['GET','POST'])
 @login_required
