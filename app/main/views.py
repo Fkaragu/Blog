@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
 from .forms import ReviewForm , PitchFormI,CommentForm
-from ..models import User, Pitch, Review,Comment
+from ..models import User, Pitch, Comment
 from flask_login import login_required, current_user
 
 # Views
@@ -21,9 +21,10 @@ def theblog():
     pitch_form = PitchFormI()
 
     if pitch_form.validate_on_submit():
+        title = pitch_form.title.data
         pitch = pitch_form.pitch.data
 
-        new_pitch = Pitch(pitch_content=pitch, user = current_user)
+        new_pitch = Pitch(pitch_content=pitch, pitch_title = title, user = current_user)
         new_pitch.save_pitch()
 
         #return redirect(url_for('index.html'))
