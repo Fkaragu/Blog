@@ -12,7 +12,7 @@ class CommentForm(FlaskForm):
     comment = TextAreaField('Comment', validators=[Required()])
     submit = SubmitField('Post Comment')
 
-class PitchFormI(FlaskForm):
+class BlogFormI(FlaskForm):
     title = StringField('Blog Title',validators=[Required()])
     pitch = TextAreaField('Blog Content:', validators=[Required()], render_kw={'class': 'form-control', 'rows': 15})
     submit = SubmitField('Submit')

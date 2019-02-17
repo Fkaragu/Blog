@@ -17,7 +17,7 @@ class User(UserMixin,db.Model):
     hash_pass = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True, index = True)
 
-    pitches = db.relationship('Pitch',backref='user',lazy='dynamic')
+    pitches = db.relationship('BLOG',backref='user',lazy='dynamic')
     comments = db.relationship('Comment',backref='user',lazy='dynamic')
 
 
@@ -38,33 +38,27 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-class Pitch(db.Model):
-    __tablename__ = 'pitches'
+class BLOG(db.Model):
+    __tablename__ = 'm_blog'
 
-    id = db.Column(db.Integer,primary_key = True)
-    pitch_title = db.Column(db.String())
-    pitch_content = db.Column(db.String())
-    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+    m_id = db.Column(db.Integer,primary_key = True)
+    m_blog_title = db.Column(db.String())
+    m_blog_content = db.Column(db.String())
+    m_user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    def save_pitch(self):
+    def save_blog(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
-    def get_pitch(cls,id):
-        pitches = Pitch.query.filter_by(id=id).all()
-        return pitches
+    def get_blog(cls,id):
+        blogs = BLOG.query.filter_by(id=id).all()
+        return blogs
 
     @classmethod
-    def get_all_pitches(cls):
-        pitches = Pitch.query.order_by('-id').all()
-        return pitches
-
-    @classmethod
-    def get_category(cls,cat):
-        category = Pitch.query.filter_by(pitch_category=cat).order_by('-id').all()
-        return category
-
+    def get_all_blogs(cls):
+        blogs = BLOG.query.order_by('-id').all()
+        return blogs
 
 class Comment(db.Model):
     __tablename__='comments'

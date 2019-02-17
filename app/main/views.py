@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for
 from . import main
-from .forms import ReviewForm , PitchFormI,CommentForm
-from ..models import User, Pitch, Comment
+from .forms import ReviewForm, BlogFormI, CommentForm
+from ..models import User, BLOG, Comment
 from flask_login import login_required, current_user
 
 # Views
@@ -18,21 +18,21 @@ def index():
 @login_required
 def theblog():
 
-    pitch_form = PitchFormI()
+    blog_form = BlogFormI()
 
-    if pitch_form.validate_on_submit():
-        title = pitch_form.title.data
-        pitch = pitch_form.pitch.data
+    if blog_form.validate_on_submit():
+        title = blog_form.title.data
+        pitch = blog_form.pitch.data
 
-        new_pitch = Pitch(pitch_content=pitch, pitch_title = title, user = current_user)
-        new_pitch.save_pitch()
+        new_pitch = BLOG(m_blog_title = title, m_blog_content=pitch, user = current_user)
+        new_pitch.save_blog()
 
         #return redirect(url_for('index.html'))
 
     title = 'Interview Pitch'
-    all_pitches = Pitch.get_all_pitches()
+    all_pitches = BLOG.get_all_blogs()
 
-    return render_template("theblog.html", pitch_form = pitch_form, pitches = all_pitches)
+    return render_template("theblog.html", pitch_form = blog_form, pitches = all_pitches)
 
 @main.route('/pitch/<int:id>',methods = ['GET','POST'])
 @login_required
