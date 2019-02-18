@@ -37,7 +37,7 @@ def theblog():
 
 @main.route('/comment/<int:id>',methods = ['GET','POST'])
 @login_required
-def pitch(id):
+def pitchx(id):
 
     my_pitch = BLOG.query.get(id)
     comment_form = CommentForm()
@@ -63,3 +63,24 @@ def allblog():
     all_pitches = BLOG.get_all_blogs()
 
     return render_template("allblog.html",pitches = all_pitches)
+
+@main.route('/comments/<int:id>',methods = ['GET','POST'])
+def pitch(id):
+
+    my_pitch = BLOG.query.get(id)
+    comment_form = CommentForm()
+
+    if id is None:
+        abort(404)
+
+    if comment_form.validate_on_submit():
+        comment_data = comment_form.comment.data
+        new_comment = Comment(comment_content = comment_data, pitch_id = id, user = '1')
+        new_comment.save_comment()
+
+        return redirect(url_for('main.pitch',id=id))
+
+    all_comments = Comment.get_comments(id)
+
+    title = 'Comment Section'
+    return render_template('comment.html',pitch = my_pitch, comment_form = comment_form, comments = all_comments, title = title)
