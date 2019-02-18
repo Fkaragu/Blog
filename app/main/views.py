@@ -5,6 +5,8 @@ from time import time, sleep
 from .forms import ReviewForm, BlogFormI, CommentForm
 from ..models import User, BLOG, Comment
 from flask_login import login_required, current_user
+import requests
+import json
 
 # Views
 @main.route('/')
@@ -60,9 +62,9 @@ def pitchx(id):
 @main.route('/allblog')
 def allblog():
 
+    random = requests.get('http://quotes.stormconsultancy.co.uk/random.json').json()
     all_pitches = BLOG.get_all_blogs()
-
-    return render_template("allblog.html",pitches = all_pitches)
+    return render_template("allblog.html",pitches = all_pitches,random = random)
 
 @main.route('/comments/<int:id>',methods = ['GET','POST'])
 def pitch(id):
