@@ -3,6 +3,8 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from . import db
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
+from time import time
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -19,7 +21,6 @@ class User(UserMixin,db.Model):
 
     pitches = db.relationship('BLOG',backref='user',lazy='dynamic')
     comments = db.relationship('Comment',backref='user',lazy='dynamic')
-
 
     @property
     def password(self):
@@ -44,6 +45,7 @@ class BLOG(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     m_blog_title = db.Column(db.String())
     m_blog_content = db.Column(db.String())
+    m_blog_posted_on =  db.Column(db.DateTime, nullable=False, default = datetime.utcnow)
     m_user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
     def save_blog(self):

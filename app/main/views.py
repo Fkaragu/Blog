@@ -1,5 +1,6 @@
 from flask import render_template,request,redirect,url_for
 from . import main
+from datetime import datetime
 from .forms import ReviewForm, BlogFormI, CommentForm
 from ..models import User, BLOG, Comment
 from flask_login import login_required, current_user
@@ -27,7 +28,7 @@ def theblog():
         new_pitch = BLOG(m_blog_title = title, m_blog_content=pitch, user = current_user)
         new_pitch.save_blog()
 
-        #return redirect(url_for('index.html'))
+        return redirect(url_for('main.theblog'))
 
     title = 'Interview Pitch'
     all_pitches = BLOG.get_all_blogs()
@@ -38,7 +39,7 @@ def theblog():
 @login_required
 def pitch(id):
 
-    my_pitch = Pitch.query.get(id)
+    my_pitch = BLOG.query.get(id)
     comment_form = CommentForm()
 
     if id is None:
