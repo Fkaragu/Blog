@@ -56,3 +56,10 @@ def pitch(id):
 
     title = 'Comment Section'
     return render_template('comment.html',pitch = my_pitch, comment_form = comment_form, comments = all_comments, title = title)
+
+@main.route('/allblog')
+def allblog():
+
+    all_pitches = BLOG.get_all_blogs()
+
+    return render_template("allblog.html",pitches = all_pitches)
