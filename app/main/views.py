@@ -2,9 +2,10 @@ from flask import render_template,request,redirect,url_for
 from . import main
 from datetime import datetime
 from time import time, sleep
-from .forms import BlogFormI, CommentForm
+from .forms import BlogFormI, CommentForm, EmailFormI
 from ..models import User, BLOG, Comment
 from flask_login import login_required, current_user
+from ..email import mail_message
 import requests
 import json
 
@@ -23,6 +24,7 @@ def theblog():
 
     blog_form = BlogFormI()
 
+
     if blog_form.validate_on_submit():
         title = blog_form.title.data
         pitch = blog_form.pitch.data
@@ -30,9 +32,10 @@ def theblog():
         new_pitch = BLOG(m_blog_title = title, m_blog_content=pitch, m_blog_posted_on = datetime.now() , user = current_user)
         new_pitch.save_blog()
 
+        #mail_message("Thank you for sending your first post","email/welcome_user",user.email,user=user)
         return redirect(url_for('main.theblog'))
 
-    title = 'Interview Pitch'
+
     all_pitches = BLOG.get_all_blogs()
 
     return render_template("theblog.html", pitch_form = blog_form, pitches = all_pitches)
@@ -40,9 +43,10 @@ def theblog():
 @main.route('/allblog')
 def allblog():
 
+    subscribe_frm = EmailFormI()
     random = requests.get('http://quotes.stormconsultancy.co.uk/random.json').json()
     all_pitches = BLOG.get_all_blogs()
-    return render_template("allblog.html",pitches = all_pitches,random = random)
+    return render_template("allblog.html",pitches = all_pitches,random = random,pitch_form1 = subscribe_frm)
 
 @main.route('/comments/<int:id>',methods = ['GET','POST'])
 def pitch(id):

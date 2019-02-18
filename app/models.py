@@ -77,3 +77,9 @@ class Comment(db.Model):
     def get_comments(cls,id):
         comments = Comment.query.filter_by(c_blog_id=id).all()
         return comments
+
+class Subscribe(db.Model):
+    __tablename__ = 'subscribe'
+
+    id = db.Column(db.Integer,primary_key = True)
+    s_email = db.Column(db.String(255),unique = True, index = True)
