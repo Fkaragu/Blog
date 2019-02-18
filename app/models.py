@@ -83,3 +83,7 @@ class Subscribe(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     s_email = db.Column(db.String(255),unique = True, index = True)
+
+    def save_email(self):
+        db.session.add(self)
+        db.session.commit()

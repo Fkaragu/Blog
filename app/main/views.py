@@ -3,7 +3,7 @@ from . import main
 from datetime import datetime
 from time import time, sleep
 from .forms import BlogFormI, CommentForm, EmailFormI
-from ..models import User, BLOG, Comment
+from ..models import User, BLOG, Comment, Subscribe
 from flask_login import login_required, current_user
 from ..email import mail_message
 import requests
@@ -44,6 +44,15 @@ def theblog():
 def allblog():
 
     subscribe_frm = EmailFormI()
+
+    if subscribe_frm.validate_on_subscribe():
+        email_data = subscribe_frm.email.data
+        new_email = Subscribe(s_email = email_data)
+        new_email.save_email()
+
+        return redirect(url_for('main.allblog'))
+
+
     random = requests.get('http://quotes.stormconsultancy.co.uk/random.json').json()
     all_pitches = BLOG.get_all_blogs()
     return render_template("allblog.html",pitches = all_pitches,random = random,pitch_form1 = subscribe_frm)
