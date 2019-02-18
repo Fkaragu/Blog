@@ -12,7 +12,6 @@ def index():
     '''
     View root page function that returns the index page and its data
     '''
-
     title = 'Welcome to the blog app'
     return render_template("index.html", title=title)
 
@@ -36,7 +35,7 @@ def theblog():
 
     return render_template("theblog.html", pitch_form = blog_form, pitches = all_pitches)
 
-@main.route('/pitch/<int:id>',methods = ['GET','POST'])
+@main.route('/comment/<int:id>',methods = ['GET','POST'])
 @login_required
 def pitch(id):
 
@@ -56,4 +55,4 @@ def pitch(id):
     all_comments = Comment.get_comments(id)
 
     title = 'Comment Section'
-    return render_template('pitch.html',pitch = my_pitch, comment_form = comment_form, comments = all_comments, title = title)
+    return render_template('comment.html',pitch = my_pitch, comment_form = comment_form, comments = all_comments, title = title)
