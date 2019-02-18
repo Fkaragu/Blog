@@ -75,7 +75,7 @@ def pitch(id):
 
     if comment_form.validate_on_submit():
         comment_data = comment_form.comment.data
-        new_comment = Comment(comment_content = comment_data, pitch_id = id, user = '1')
+        new_comment = Comment(comment_content = comment_data, pitch_id = id)
         new_comment.save_comment()
 
         return redirect(url_for('main.pitch',id=id))
