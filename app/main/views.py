@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for
 from . import main
 from datetime import datetime
 from time import time, sleep
-from .forms import ReviewForm, BlogFormI, CommentForm
+from .forms import BlogFormI, CommentForm
 from ..models import User, BLOG, Comment
 from flask_login import login_required, current_user
 import requests
