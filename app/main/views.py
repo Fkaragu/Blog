@@ -43,19 +43,10 @@ def theblog():
 @main.route('/allblog')
 def allblog():
 
-    subscribe_frm = EmailFormI()
-
-    if subscribe_frm.validate_on_subscribe():
-        email_data = subscribe_frm.email.data
-        new_email = Subscribe(s_email = email_data)
-        new_email.save_email()
-
-        return redirect(url_for('main.allblog'))
-
 
     random = requests.get('http://quotes.stormconsultancy.co.uk/random.json').json()
     all_pitches = BLOG.get_all_blogs()
-    return render_template("allblog.html",pitches = all_pitches,random = random,pitch_form1 = subscribe_frm)
+    return render_template("allblog.html",pitches = all_pitches,random = random)
 
 @main.route('/comments/<int:id>',methods = ['GET','POST'])
 def pitch(id):
