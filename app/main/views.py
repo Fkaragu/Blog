@@ -26,7 +26,7 @@ def theblog():
         title = blog_form.title.data
         pitch = blog_form.pitch.data
 
-        new_pitch = BLOG(m_blog_title = title, m_blog_content=pitch, m_blog_content_posted_on = datetime.now() , user = current_user)
+        new_pitch = BLOG(m_blog_title = title, m_blog_content=pitch, m_blog_posted_on = datetime.now() , user = current_user)
         new_pitch.save_blog()
 
         return redirect(url_for('main.theblog'))
