@@ -1,21 +1,19 @@
-## One Minute Pitch
-## Pitch is a web application that gives you 60 seconds to pitch your idea.
-### 08 February 2019
+## Blog
+## Blog is a web application that allows users / writers to view and comment on blogs posted.
+### 15 February 2019
 #### By **[Francis T Karagu]**
 
 ## Description
-Pitch is a web application that provides a platform for the user to pitch his / her idea and get comment on it from the public. For one to see the comment or pitch an idea you must have signed in mean you have to be a user.
+Blog is a web application that provides a platform for the user to comment on blogs posted and allows writers the opportunity to create blogs.
 
 ## Specifications
 ### Who is the target User?
-* Anyone who wants to Pitch an idea and get feedback.
+* Anyone who wants to review, share , comment and advice the public.
 
 ### Front-end/User Interface Logic Objectives
-* By default the page will load and provide three categories and a sign up option.
-* Home: This is the current landing page
-* Interview: This is the section to be used for pitching Interview related statements
-* Pickup Line: This is the section to be used for pitching Pickup line related statements
-* Promotion: This is the section to be used for pitching Promotion related statements
+* By default the page will load and provide two options and a sign up option.
+* Post a Blog: This section will be used by writers who want to post a blog. You will be required to login to access this section.
+* Read a Blog: This section will be used by users who want to comment on blogs.
 * Sign In: This is the section to be used for signing in or creating new members.
 
 ### Back-end/Business logic Objectives
@@ -25,11 +23,9 @@ Pitch is a web application that provides a platform for the user to pitch his / 
 ### Behaviour-Driven Development
 | Behavior            | Input                         | Output                        |
 | ------------------- | ----------------------------- | ----------------------------- |
-| View Home | Click on the Pitch | Loads the home page. |
-| View Home | Click on the Category | Loads the home page. |
-| View Interview | Click on the Interview | Validation helps to check if you are logged in. If yes page load else you are routed to sign in page.|
-| View Pickup Line | Click on the Pickup Line | Validation helps to check if you are logged in. If yes page load else you are routed to sign in page.|
-| View Promotion | Click on the Promotion | Validation helps to check if you are logged in. If yes page load else you are routed to sign in page.|
+| View Home | Click on the Blog | Loads the home page. |
+| View Post a Blog | Click on Post a Blog | Validation helps to check if you are logged in. If yes page load else you are routed to sign in page.|
+| View Read a Blog | Click on Read a Blog | No validation required. All blogs are loaded and random quotes are displayed.|
 
 ## Prerequiites
     - Python 3.6 required
