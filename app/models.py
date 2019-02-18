@@ -20,7 +20,6 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255),unique = True, index = True)
 
     pitches = db.relationship('BLOG',backref='user',lazy='dynamic')
-    comments = db.relationship('Comment',backref='user',lazy='dynamic')
 
     @property
     def password(self):
