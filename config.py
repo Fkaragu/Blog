@@ -52,7 +52,7 @@ class TestConfig(Config):
         Config: The parent configuration class with General configuration settings
     """
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://francs:master@localhost/blog'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://francs:master@localhost/blog_test'
     DEBUG = True
 
 
