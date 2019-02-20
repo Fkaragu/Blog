@@ -16,9 +16,3 @@ class BloghModelTest(unittest.TestCase):
 
     def test_save_blog(self):
         self.new_blog.save_blog()
-
-
-    def test_get_blog_by_id(self):
-        self.new_blog.save_blog()
-        got_blog = BLOG.get_blog(1)
-        self.assertTrue(len(got_blog) > 0)
